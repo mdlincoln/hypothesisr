@@ -1,0 +1,14 @@
+Package: hypothesisR
+Type: Package
+Title: Wrapper for the Hypothes.is API
+Version: 0.0.1.9000
+Authors@R: person("Matthew", "Lincoln", email = "matthew.d.lincoln@gmail.com",
+    role = c("aut", "cre"))
+Description: Interact with the API for the web annotation service hypothes.is.
+    Allows users to add, search for, and retrieve annotation data.
+Depends:
+    httr,
+    jsonlite
+License: MIT + file LICENSE
+LazyData: TRUE
+RoxygenNote: 5.0.1
