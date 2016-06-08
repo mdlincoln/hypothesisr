@@ -45,5 +45,4 @@ artifacts:
 
 environment:
   my_secret:
-    secure: g2qv0CBeDzTbzsTObNNjuw
-
+    secure: g2qv0CBeDzTbzsTObNNjuw==
