@@ -49,5 +49,10 @@ ulysses_annotations$text
 #> [6] "What better novel to annotate than Ulysses, a novel full of jokes, references, and puzzles? "
 ```
 
+You may also retreive the data describing individual annotations by id:
+
+``` r
+hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
+```
 ---
 [Matthew Lincoln](http://matthewlincoln.net)
