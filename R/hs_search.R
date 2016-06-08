@@ -85,9 +85,9 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
   # If a progress bar is warranted, create it and return a paging function that
   # increments it; if not, just a plain paging function
   if(progress) {
-    pb <- txtProgressBar(min = 0, max = total_results, initial = pagesize, style = 3)
+    pb <- utils::txtProgressBar(min = 0, max = total_results, initial = pagesize, style = 3)
     pager <- function(x) {
-      setTxtProgressBar(pb, x)
+      utils::setTxtProgressBar(pb, x)
       hs_search_handler(limit = pagesize, offset = x, sort, order, uri, user, text,
                         any, custom)
     }
@@ -103,7 +103,7 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
 
   # Close progress bar if needed
   if(exists("pb")) {
-    setTxtProgressBar(pb, total_results)
+    utils::setTxtProgressBar(pb, total_results)
     close(pb)
   }
 
