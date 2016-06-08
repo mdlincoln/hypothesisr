@@ -9,7 +9,7 @@
 #' @param document A list describing the document. CURRENTLY IGNORED.
 #' @param target A list describing the highlight position of the annotation. CURRENTLY IGNORED
 #' @param tags Character. (optional) Tags to apply to the annotation.
-#' @param text Character. Text to put in the body of teh annotation. This will be coerced into a character vector of length 1 using \link{paste}.
+#' @param text Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.
 #'
 #' @return Upon successful creation, returns a 22-character annotation ID. This ID may be retrieved using \link{hs_read}.
 #'
