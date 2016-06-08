@@ -66,6 +66,7 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any,
 
   # Construct a url from the query
   hs_base_url_list$path <- "api/search"
+  hs_base_url_list$query <- custom
   hs_base_url_list$query$limit <- limit
   hs_base_url_list$query$offset <- offset
   hs_base_url_list$query$sort <- sort
@@ -74,7 +75,6 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any,
   hs_base_url_list$query$user <- user
   hs_base_url_list$query$text <- text
   hs_base_url_list$query$any <- any
-  hs_base_url_list$query <- custom
   formatted_url <- httr::build_url(hs_base_url_list)
 
   # GET the URL
