@@ -54,6 +54,56 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
   list_results(query_response)
 }
 
+#' Retreive all annotation search results as a data frame
+#'
+#' Takes the same arguments as \link{hs_search} and pages through all available results, formatting the output as a data.frame.
+#'
+#' @describeIn hs_search
+#'
+#' @export
+hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
+                          user = NULL, text = NULL, any = NULL, custom = list(),
+                          progress = interactive()) {
+  first_page <- hs_search_handler(limit = 200, offset = 0, sort, order, uri,
+                                  user, text, any, custom)
+  total_results <- num_results(first_page)
+
+  # If all the results are returned within the first page of 200 values, the
+  # function is finished.
+  if(total_results <= 200)
+    return(hs_content(first_page))
+
+  # If not, we start paging.
+  search_pages <- seq(200, total_results, by = 200)
+
+  # If a progress bar is warranted, create it and return a paging function that
+  # increments it; if not, just a plain paging function
+  if(progress) {
+    pb <- txtProgressBar(min = 0, max = total_results, initial = 200, style = 3)
+    pager <- function(x) {
+      setTxtProgressBar(pb, x)
+      hs_search_handler(limit = 200, offset = x, sort, order, uri, user, text,
+                        any, custom)
+    }
+  } else {
+    pager <- function(x) {
+      hs_search_handler(limit = 200, offset = x, sort, order, uri, user, text,
+                        any, custom)
+    }
+  }
+
+  # Page through all results
+  all_results <- lapply(search_pages, pager)
+
+  # Close progress bar if needed
+  if(exists("pb")) {
+    setTxtProgressBar(pb, total_results)
+    close(pb)
+  }
+
+  hs_as_data_frame(all_results)
+}
+
 # Internal search functions ----
 
 # Internal handler that constructs and fires the appropriate URL.
