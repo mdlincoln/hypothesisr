@@ -21,7 +21,7 @@ hs_search_all(sort = "updated", order = "asc", uri = NULL, user = NULL,
 
 \item{offset}{Integer The minimum number of initial annotations to skip. This
 is used for pagination. For example if there are 65 annotations matching
-our search query and we’re retrieving up to 30 annotations at a time, then
+our search query and we're retrieving up to 30 annotations at a time, then
 to retrieve the last 5, set offset = 5. (Default = 0)}
 
 \item{sort}{Character. Specify which field the annotations should be sorted
@@ -54,6 +54,10 @@ text, for example: \code{foobar}.}
 
 \item{custom}{A named list of any field in the results returned by
 hypothes.is as a name, and the search text as values.}
+
+\item{pagesize}{Integer. How many annotations to retrieve per query. Between 1 and 200. (Default: 200)}
+
+\item{progress}{Boolean. Should a progress bar be displayed during download?}
 }
 \value{
 Returns a list of results
@@ -75,6 +79,6 @@ If any vectors are passed to these arguments, only the first values
 # Search for no more than 5 annotations containing the text "ulysses"
 hs_search(text = "ulysses", limit = 5)
 # Search with a custom field for tags
-hs_search(custom = list(tags = "to-do"))
+hs_search(custom = list(tags = "todo"))
 }
 

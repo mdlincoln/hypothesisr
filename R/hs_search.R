@@ -11,7 +11,7 @@
 #'   20)
 #' @param offset Integer The minimum number of initial annotations to skip. This
 #'   is used for pagination. For example if there are 65 annotations matching
-#'   our search query and we’re retrieving up to 30 annotations at a time, then
+#'   our search query and we're retrieving up to 30 annotations at a time, then
 #'   to retrieve the last 5, set offset = 5. (Default = 0)
 #' @param sort Character. Specify which field the annotations should be sorted
 #'   by: \code{consumer}, \code{created}, \code{id}, \code{text},
@@ -37,6 +37,8 @@
 #'   \code{text}, \code{uri.parts} or \code{user} fields match some query text.
 #' @param custom A named list of any field in the results returned by
 #'   hypothes.is as a name, and the search text as values.
+#' @param pagesize Integer. How many annotations to retrieve per query. Between 1 and 200. (Default: 200)
+#' @param progress Boolean. Should a progress bar be displayed during download?
 #'
 #' @source \url{https://h.readthedocs.io/en/latest/api/#search}
 #'
@@ -45,7 +47,7 @@
 #' # Search for no more than 5 annotations containing the text "ulysses"
 #' hs_search(text = "ulysses", limit = 5)
 #' # Search with a custom field for tags
-#' hs_search(custom = list(tags = "to-do"))
+#' hs_search(custom = list(tags = "todo"))
 #' @export
 hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "asc",
                       uri = NULL, user = NULL, text = NULL, any = NULL, custom = list()) {
