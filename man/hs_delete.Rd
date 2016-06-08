@@ -7,7 +7,7 @@
 hs_delete(token, id)
 }
 \arguments{
-\item{token}{Character. Your account token, which you can generate at \url{https://hypothes.is/profile/developer}}
+\item{token}{Character. Your account token, which you can generate at \url{https://hypothes.is/register}}
 
 \item{id}{Character. A hypothes.is annotation id.}
 }

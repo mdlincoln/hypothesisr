@@ -9,7 +9,7 @@ hs_create(token, uri, user, permissions = list(read = "group:__world__",
   target = NULL, tags = NULL, text)
 }
 \arguments{
-\item{token}{Character. Your account token, which you can generate at \url{https://hypothes.is/profile/developer}}
+\item{token}{Character. Your account token, which you can generate at \url{https://hypothes.is/register}}
 
 \item{uri}{Character. The URI to be annotated.}
 
