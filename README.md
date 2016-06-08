@@ -53,7 +53,7 @@ ulysses_annotations$text
 
 Note: running `hs_search_all()` with no parameters will download _all_ publicly accessible hypothes.is annotations.
 
-### Create, read, and delete annotations
+### Create, read, update, and delete annotations
 
 To create and delete annotations, you will need to register for an API token at <https://hypothes.is/register>.
 
@@ -91,6 +91,14 @@ hs_read("lDf9rC3EEea6ck-G5kLdXA")
 #> 1 acct:mdlincoln@hypothes.is
 ```
 
+You can update individual fields of annotations by passing your token, the annotation ID, and one or more fields with replacement values.
+
+``` r
+hs_update(user_token, "lDf9rC3EEea6ck-G5kLdXA", text = "Now even more annotate-y!")
+hs_read("lDf9rC3EEea6ck-G5kLdXA")$text
+#> [1] "Now even more annotate-y!"
+```
+
 You can also delete annotations (at least, those for which you have the permissions to delete):
 
 ``` r
@@ -100,9 +108,8 @@ hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 
 ## To-do
 
-1. Update annotations
-2. Target annotations to specific parts of a webpage
-3. Generalize hypothesisr to work on localized installations of hypothes.is
+1. Target annotations to specific parts of a webpage
+1. Generalize hypothesisr to work on localized installations of hypothes.is
 
 ---
 [Matthew Lincoln](http://matthewlincoln.net)
