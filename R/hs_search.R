@@ -51,7 +51,7 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
                       uri = NULL, user = NULL, text = NULL, any = NULL, custom = list()) {
   query_response <- hs_search_handler(limit[1], offset[1], sort[1], order[1],
                                       uri[1], user[1], text[1], any[1], custom)
-  httr::content(query_response)
+  list_results(query_response)
 }
 
 # Internal search functions ----
