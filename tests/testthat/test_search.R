@@ -17,13 +17,13 @@ test_that("hs_search returns a list of the expected format.", {
   hs_ulysses <- hs_search(text = "ulysses", limit = 5)
 
   expect_type(hs_ulysses$total, "integer")
-  expect_type(hs_ulysses$rows, "list")
-  expect_equivalent(length(hs_ulysses$rows), 5)
-  expect_equivalent(names(hs_ulysses$rows[[1]]), c("updated", "group", "target", "links", "tags", "text", "created", "uri", "user", "document", "id", "permissions"))
+  expect_s3_class(hs_ulysses$rows, "data.frame")
+  expect_equivalent(nrow(hs_ulysses$rows), 5)
+  expect_equivalent(names(hs_ulysses$rows), c("updated", "group", "target", "tags", "text", "created", "uri", "user", "id", "references", "links.json", "links.html", "links.incontext", "document.link", "document.title", "document.favicon", "document.twitter.url", "document.twitter.site", "document.twitter.card", "document.twitter.title", "document.facebook.url", "document.facebook.site_name", "document.facebook.type", "document.facebook.title", "permissions.read", "permissions.admin", "permissions.update", "permissions.delete"))
 })
 
 test_that("custom fields in hs_search are correctly added to URL.", {
   hs_custom <- hs_search(limit = 5, custom = list(tags = "todo"))
 
-  expect_equivalent(length(hs_custom$rows), 5)
+  expect_equivalent(nrow(hs_custom$rows), 5)
 })
