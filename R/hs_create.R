@@ -33,13 +33,7 @@ hs_create_handler <- function(token, uri, user, permissions, document, target, t
   # Check token validity
   is_valid_token(token)
 
-  # Construct a list holding the annotation data, and parse into JSON
-  create_list <- list(uri = jsonlite::unbox(uri))
-  create_list$user <- jsonlite::unbox(user)
-  create_list$permissions <- permissions
-  create_list$tags <- tags
-  create_list$text <- jsonlite::unbox(text)
-  create_json <- jsonlite::toJSON(create_list)
+  create_json <- hs_construct_annotation(uri, user, permissions, tags, text)
 
   # Format the url to post to
   hs_base_url_list$path <- "api/annotations"
@@ -49,6 +43,19 @@ hs_create_handler <- function(token, uri, user, permissions, document, target, t
   httr::POST(formatted_url, body = create_json, httr::accept_json(),
     httr::content_type_json(),
     httr::add_headers(Authorization = paste0("Bearer ", token)))
+}
+
+# Constructs annotation JSON (may be used by a future hs_update_handler, hence
+# the separate method)
+hs_construct_annotation <- function(uri, user, permissions, tags, text) {
+  # Construct a list holding the annotation data, and parse into JSON
+  ann_list <- list(uri = jsonlite::unbox(uri))
+  ann_list$user <- jsonlite::unbox(user)
+  ann_list$permissions <- permissions
+  ann_list$tags <- tags
+  ann_list$text <- jsonlite::unbox(text)
+
+  jsonlite::toJSON(ann_list)
 }
 
 # Check the response code after creation. If 200, return the new annotation ID.
