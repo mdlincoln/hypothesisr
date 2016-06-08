@@ -10,6 +10,8 @@ Imports:
     dplyr,
     httr,
     jsonlite
+Suggests:
+    tidyr
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
