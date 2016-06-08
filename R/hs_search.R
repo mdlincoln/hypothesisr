@@ -51,7 +51,7 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
                       uri = NULL, user = NULL, text = NULL, any = NULL, custom = list()) {
   query_response <- hs_search_handler(limit[1], offset[1], sort[1], order[1],
                                       uri[1], user[1], text[1], any[1], custom)
-  list_results(query_response)
+  hs_search_results(query_response)
 }
 
 #' Retreive all annotation search results as a data frame
@@ -62,32 +62,38 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
 #'
 #' @export
 hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
-                          user = NULL, text = NULL, any = NULL, custom = list(),
+                          user = NULL, text = NULL, any = NULL, custom = list(), pagesize = 200,
                           progress = interactive()) {
-  first_page <- hs_search_handler(limit = 200, offset = 0, sort, order, uri,
+
+  # pagesize <- validate_pagesize(pagesize)
+
+  # Get a first page of results in order to assess how large the total download
+  # will be
+  first_page <- hs_search_handler(limit = pagesize, offset = 0, sort, order, uri,
                                   user, text, any, custom)
+
   total_results <- num_results(first_page)
 
-  # If all the results are returned within the first page of 200 values, the
+  # If all the results are returned within the first page of values, the
   # function is finished.
-  if(total_results <= 200)
-    return(hs_content(first_page))
+  if(total_results <= pagesize)
+    return(hs_search_response(first_page))
 
   # If not, we start paging.
-  search_pages <- seq(200, total_results, by = 200)
+  search_pages <- seq(0, total_results, by = pagesize)
 
   # If a progress bar is warranted, create it and return a paging function that
   # increments it; if not, just a plain paging function
   if(progress) {
-    pb <- txtProgressBar(min = 0, max = total_results, initial = 200, style = 3)
+    pb <- txtProgressBar(min = 0, max = total_results, initial = pagesize, style = 3)
     pager <- function(x) {
       setTxtProgressBar(pb, x)
-      hs_search_handler(limit = 200, offset = x, sort, order, uri, user, text,
+      hs_search_handler(limit = pagesize, offset = x, sort, order, uri, user, text,
                         any, custom)
     }
   } else {
     pager <- function(x) {
-      hs_search_handler(limit = 200, offset = x, sort, order, uri, user, text,
+      hs_search_handler(limit = pagesize, offset = x, sort, order, uri, user, text,
                         any, custom)
     }
   }
@@ -101,7 +107,7 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
     close(pb)
   }
 
-  hs_as_data_frame(all_results)
+  hs_search_all_results(all_results)
 }
 
 # Internal search functions ----
@@ -133,6 +139,30 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any,
   httr::GET(formatted_url, httr::accept_json())
 }
 
+hs_search_results <- function(hs_search_response) {
+
+  res_list <- list_results(hs_search_response)
+  res_total <- res_list$total
+  res_df <- res_list$rows
+  res_rows <- nrow(res_df)
+  attr(res_df, "hs_total_available") <- res_total
+
+  if(res_total > res_rows)
+    message("Your search result returned ", res_rows, " annotations, however ", res_total, " are available. Use hs_search_all to page through all possible results.")
+
+  return(res_df)
+}
+
+hs_search_all_results <- function(hs_response) {
+
+  listed_results <- lapply(hs_response, list_results)
+  unlisted_results <- lapply(listed_results, function(x) {
+    x$rows
+  })
+
+  dplyr::bind_rows(unlisted_results)
+}
+
 # Input checking ----
 
 # Is the limit valid?
@@ -157,10 +187,9 @@ is_valid_sort <- function(field) {
     "text",
     "updated",
     "uri",
-    "user",
-    NULL)
+    "user")
 
-  if(!(field %in% valid_sorts))
+  if(!(field %in% valid_sorts | is.null(field)))
     stop(field, " is not the name of a field that hypothes.is can sort by. Please try one of the following: ", paste(valid_sorts, collapse = "; "))
 }
 
@@ -170,4 +199,14 @@ is_valid_order <- function(field) {
 
   if(!(field %in% valid_orders))
     stop("hypothes.is cannot order in the direction ", field, ". Please use 'asc' or 'desc'")
+}
+
+# Is the pagesize valid?
+validate_pagesize <- function(pagesize) {
+  if(!is.numeric(pagesize)) {
+    stop("pagesize must be numeric")
+  } else if(pagesize <= 0 | pagesize > 200) {
+    warning("Coercing ", pagesize, " to integer.")
+    return(as.integer(pagesize))
+  }
 }
