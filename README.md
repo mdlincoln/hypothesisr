@@ -18,7 +18,7 @@ devtools::install_github("mdlincoln/hypothesisr")
 
 ## Usage
 
-### Search and retreive annotations
+### Search and retrieve annotations
 
 ``` r
 library(hypothesisr)
@@ -65,7 +65,7 @@ hs_create(token = user_token, uri = "https://github.com/mdlincoln/hypothesisr", 
 #> [1] "lDf9rC3EEea6ck-G5kLdXA"
 ```
 
-You may also retreive the data describing individual annotations by id:
+You may also retrieve the data describing individual annotations by id:
 
 ``` r
 hs_read("lDf9rC3EEea6ck-G5kLdXA")
