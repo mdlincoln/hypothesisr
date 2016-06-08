@@ -76,14 +76,14 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any) 
 
 # Is the limit valid?
 is_valid_limit <- function(limit) {
-  if(!(is.integer(limit) | is.null(limit)))
-    stop("'limit' must be an integer")
+  if(!(is.numeric(limit) | is.null(limit)))
+    stop("'limit' must be a whole number")
 }
 
 # Is the offset valid?
 is_valid_offset <- function(offset) {
-  if(!(is.integer(offset) | is.null(offset)))
-    stop("'offset' must be an integer")
+  if(!(is.numeric(offset) | is.null(offset)))
+    stop("'offset' must be a whole number")
 }
 
 # Is the supplied sort field one of the acceptable fields?
