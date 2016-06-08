@@ -56,7 +56,7 @@ Note: running `hs_search_all()` with no parameters will download _all_ publicly 
 
 ### Create, read, and delete annotations
 
-To create and delete annotations, you will need to register for an API token at <https://hypothes.is/profile/developer>.
+To create and delete annotations, you will need to register for an API token at <https://hypothes.is/register>.
 
 _At the moment, hpothesisr cannot create annotations targeted to a particular section of a webpage, such as a highlighted line. These annotations will be visible at the page-level._
 

@@ -2,7 +2,7 @@
 
 #' Create annotations
 #'
-#' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/profile/developer}
+#' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/register}
 #' @param uri Character. The URI to be annotated.
 #' @param user Character. Your user account, normally in the format \code{acct:username@hypothes.is}
 #' @param permissions A named list with read, update, delete, and admin permissions. Defaults to setting global read permissions (\code{group:__world__}) and setting the \code{user} string for update, delete, and admin permissions.

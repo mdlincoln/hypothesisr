@@ -2,7 +2,7 @@
 
 #' Delete an annotation
 #'
-#' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/profile/developer}
+#' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/register}
 #' @param id Character. A hypothes.is annotation id.
 #'
 #' @return TRUE on successful deletion.
