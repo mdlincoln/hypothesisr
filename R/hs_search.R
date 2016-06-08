@@ -38,7 +38,7 @@
 #'
 #' @return Returns a list of results
 #' @export
-hs_search <- function(limit = 20, offset = 0, sort = "updated", order = "asc",
+hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "asc",
                       uri = NULL, user = NULL, text = NULL, any = NULL) {
   query_response <- hs_search_handler(limit[1], offset[1], sort[1], order[1],
                                       uri[1], user[1], text[1], any[1])
