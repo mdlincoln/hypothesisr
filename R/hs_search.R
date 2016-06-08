@@ -38,6 +38,8 @@
 #' @param custom A named list of any field in the results returned by
 #'   hypothes.is as a name, and the search text as values.
 #'
+#' @source \url{https://h.readthedocs.io/en/latest/api/#search}
+#'
 #' @return Returns a list of results
 #' @examples
 #' # Search for no more than 5 annotations containing the text "ulysses"
