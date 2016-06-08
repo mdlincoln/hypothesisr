@@ -40,7 +40,7 @@
 #'
 #' @source \url{https://h.readthedocs.io/en/latest/api/#search}
 #'
-#' @return Returns a list of results
+#' @return A dataframe with annotation data.
 #' @examples
 #' # Search for no more than 5 annotations containing the text "ulysses"
 #' hs_search(text = "ulysses", limit = 5)
@@ -64,6 +64,11 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
 #' @param pagesize Integer. How many annotations to retrieve per query. Between 1 and 200. (Default: 200)
 #' @param progress Boolean. Should a progress bar be displayed during download?
 #'
+#' @return A dataframe with annotation data.
+#' @examples
+#' \dontrun{
+#' hs_search_all(text = "arxiv")
+#' }
 #' @export
 hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
                           user = NULL, text = NULL, any = NULL, custom = list(), pagesize = 200,

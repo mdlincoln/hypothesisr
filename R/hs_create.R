@@ -14,6 +14,14 @@
 #' @return Upon successful creation, returns a 22-character annotation ID. This ID may be retrieved using \link{hs_read}.
 #'
 #' @export
+#' @source \url{https://h.readthedocs.io/en/latest/api/#create}
+#' @examples
+#' \dontrun{
+#' hs_create(token = user_token,
+#' uri = "https://github.com/mdlincoln/hypothesisr",
+#' user = "acct:mdlincoln@hypothes.is", tags = c("testing", "R"),
+#' text = "R made me!")
+#' }
 hs_create <- function(token, uri, user,
                       permissions = list(read = "group:__world__",
                                          update = user, delete = user,

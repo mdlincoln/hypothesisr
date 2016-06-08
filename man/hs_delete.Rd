@@ -3,6 +3,9 @@
 \name{hs_delete}
 \alias{hs_delete}
 \title{Delete an annotation}
+\source{
+\url{https://h.readthedocs.io/en/latest/api/#delete}
+}
 \usage{
 hs_delete(token, id)
 }

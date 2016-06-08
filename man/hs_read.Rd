@@ -3,6 +3,9 @@
 \name{hs_read}
 \alias{hs_read}
 \title{Retrieve a single annotation by ID}
+\source{
+\url{https://h.readthedocs.io/en/latest/api/#read}
+}
 \usage{
 hs_read(id)
 }
@@ -16,6 +19,6 @@ A dataframe with the contents of that annotation.
 Retrieve a single annotation by ID
 }
 \examples{
-hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
+hs_read("WFMnSC3FEeaNvLeGkQeJbg")
 }
 

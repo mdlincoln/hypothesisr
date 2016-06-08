@@ -8,7 +8,8 @@
 #'
 #' @export
 #' @examples
-#' hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
+#' hs_read("WFMnSC3FEeaNvLeGkQeJbg")
+#' @source \url{https://h.readthedocs.io/en/latest/api/#read}
 hs_read <- function(id) {
   hs_read_response <- hs_read_handler(id)
   hs_read_results(hs_read_response)

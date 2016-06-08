@@ -6,6 +6,7 @@
 #' @param id Character. A hypothes.is annotation id.
 #'
 #' @return TRUE on successful deletion.
+#' @source \url{https://h.readthedocs.io/en/latest/api/#delete}
 #'
 #' @export
 hs_delete <- function(token, id) {

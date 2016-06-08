@@ -7,8 +7,12 @@
 #' @param id Character. A hypothes.is annotation id.
 #'
 #' @return TRUE on successful update.
-#'
+#' @source \url{https://h.readthedocs.io/en/latest/api/#update}
 #' @export
+#' @examples
+#' \dontrun{
+#' hs_update(user_token, "lDf9rC3EEea6ck-G5kLdXA", text = "Now even more annotate-y!")
+#' }
 hs_update <- function(token, id, uri = NULL, user = NULL, permissions = NULL,
                       document = NULL, target = NULL, tags = NULL, text = NULL) {
   hs_update_response <- hs_update_handler(token, id, uri, user, permissions,
