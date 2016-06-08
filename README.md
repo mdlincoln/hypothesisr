@@ -19,7 +19,7 @@ devtools::install_github("mdlincoln/hypothesisr")
 
 ## Usage
 
-Search and retrieve annotation data
+### Search and retreive annotations
 
 ``` r
 library(hypothesisr)
@@ -50,19 +50,61 @@ ulysses_annotations$text
 #> [6] "What better novel to annotate than Ulysses, a novel full of jokes, references, and puzzles? "
 ```
 
-Note: running `hs_search_all()` with no parameters will download _all_ hypothes.is annotations.
+`hs_search()` will retrieve one page of annotations (up to 200 annotations per page), while `hs_search_all()` will page through all available annotations until they are all downloaded.
+
+Note: running `hs_search_all()` with no parameters will download _all_ publicly accessible hypothes.is annotations.
+
+### Create, read, and delete annotations
+
+To create and delete annotations, you will need to register for an API token at <https://hypothes.is/profile/developer>.
+
+_At the moment, hpothesisr cannot create annotations targeted to a particular section of a webpage, such as a highlighted line. These annotations will be visible at the page-level._
+
+``` r
+user_token <- "xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+hs_create(token = user_token, uri = "https://github.com/mdlincoln/hypothesisr", user = "acct:mdlincoln@hypothes.is", tags = c("testing", "R"), text = "R made me!")
+#> [1] "lDf9rC3EEea6ck-G5kLdXA"
+```
 
 You may also retreive the data describing individual annotations by id:
 
 ``` r
-hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
+hs_read("lDf9rC3EEea6ck-G5kLdXA")
+#>                            updated     group
+#> 1 2016-06-08T22:01:40.496319+00:00 __world__
+#>                                     target
+#> 1 https://github.com/mdlincoln/hypothesisr
+#>                                                   links.json
+#> 1 https://hypothes.is/api/annotations/lDf9rC3EEea6ck-G5kLdXA
+#>                                     links.html
+#> 1 https://hypothes.is/a/lDf9rC3EEea6ck-G5kLdXA
+#>                                                          links.incontext
+#> 1 https://hyp.is/lDf9rC3EEea6ck-G5kLdXA/github.com/mdlincoln/hypothesisr
+#>         tags       text                          created
+#> 1 testing, R R made me! 2016-06-08T22:01:40.496312+00:00
+#>                                        uri                       user
+#> 1 https://github.com/mdlincoln/hypothesisr acct:mdlincoln@hypothes.is
+#>                                       link                     id
+#> 1 https://github.com/mdlincoln/hypothesisr lDf9rC3EEea6ck-G5kLdXA
+#>   permissions.read          permissions.admin         permissions.update
+#> 1  group:__world__ acct:mdlincoln@hypothes.is acct:mdlincoln@hypothes.is
+#>           permissions.delete
+#> 1 acct:mdlincoln@hypothes.is
+```
+
+You can also delete annotations (at least, those for which you have the permissions to delete):
+
+``` r
+user_token <- "6879-c30dbdcdf63d1966cfe2c0eae9cca5b8"
+hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
+#> [1] TRUE
 ```
 
 ## To-do
 
-1. Create annotations
-2. Update annotations
-3. Delete annotations
+1. Update annotations
+2. Target annotations to specific parts of a webpage
+3. Generalize hypothesisr to work on localized installations of hypothes.is
 
 ---
 [Matthew Lincoln](http://matthewlincoln.net)
