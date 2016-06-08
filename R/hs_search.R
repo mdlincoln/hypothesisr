@@ -130,7 +130,7 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any,
   formatted_url <- httr::build_url(hs_base_url_list)
 
   # GET the URL
-  httr::GET(formatted_url, accept_json())
+  httr::GET(formatted_url, httr::accept_json())
 }
 
 # Input checking ----
