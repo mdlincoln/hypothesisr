@@ -95,7 +95,6 @@ hs_read("lDf9rC3EEea6ck-G5kLdXA")
 You can also delete annotations (at least, those for which you have the permissions to delete):
 
 ``` r
-user_token <- "6879-c30dbdcdf63d1966cfe2c0eae9cca5b8"
 hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 #> [1] TRUE
 ```
