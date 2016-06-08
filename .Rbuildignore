@@ -3,5 +3,6 @@
 ^\.Rprofile$
 ^appveyor\.yml$
 ^\.travis\.yml$
-^\.Rprofile\.enc$
-^\.Rprofile_av\.enc$
+^tests/testthat/token_av\.enc$
+^tests/testthat/token_travis\.enc$
+^secure-file/*$

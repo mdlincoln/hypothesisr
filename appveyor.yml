@@ -9,7 +9,7 @@ init:
 
 install:
   - nuget install secure-file -ExcludeVersion
-  - secure-file\tools\secure-file -decrypt .Rprofile_av.enc -secret %my_secret% -out .Rprofile
+  - secure-file\tools\secure-file -decrypt tests/testthat/token_av.enc -secret %my_secret% -out tests/testthat/token.rds
   - ps: Bootstrap
 
 # Adapt as necessary starting from here
