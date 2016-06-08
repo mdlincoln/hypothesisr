@@ -2,8 +2,11 @@
 
 #' Update annotations
 #'
+#' @inheritParams hs_create
 #' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/register}.
 #' @param id Character. A hypothes.is annotation id.
+#'
+#' @return TRUE on successful update.
 #'
 #' @export
 hs_update <- function(token, id, uri = NULL, user = NULL, permissions = NULL,

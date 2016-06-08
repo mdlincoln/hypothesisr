@@ -37,8 +37,6 @@
 #'   \code{text}, \code{uri.parts} or \code{user} fields match some query text.
 #' @param custom A named list of any field in the results returned by
 #'   hypothes.is as a name, and the search text as values.
-#' @param pagesize Integer. How many annotations to retrieve per query. Between 1 and 200. (Default: 200)
-#' @param progress Boolean. Should a progress bar be displayed during download?
 #'
 #' @source \url{https://h.readthedocs.io/en/latest/api/#search}
 #'
@@ -58,9 +56,13 @@ hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "as
 
 #' Retreive all annotation search results as a data frame
 #'
-#' Takes the same arguments as \link{hs_search} and pages through all available results, formatting the output as a data.frame.
+#' Takes the same arguments as \link{hs_search} and pages through all available
+#' results, formatting the output as a data.frame.
 #'
-#' @describeIn hs_search
+#' @inheritParams hs_search
+#'
+#' @param pagesize Integer. How many annotations to retrieve per query. Between 1 and 200. (Default: 200)
+#' @param progress Boolean. Should a progress bar be displayed during download?
 #'
 #' @export
 hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
