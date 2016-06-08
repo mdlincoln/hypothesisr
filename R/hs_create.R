@@ -62,7 +62,7 @@ hs_create_results <- function(hs_create_response) {
             "200" = list_results(response)$id,
             "400" = stop("400: could not create annotation from your request (bad payload)"),
             "401" = stop("401: no API token was provided"),
-            "403" = stop("403: API token provided does not convey “create” permissions"),
+            "403" = stop("403: API token provided does not convey 'create' permissions"),
             "404" = stop("404: API token is unrecognized"),
             stop("Hypothes.is sent an undocumented response code. Sorry!")
     )
