@@ -143,7 +143,7 @@ hs_search_results <- function(hs_search_response) {
 
   res_list <- list_results(hs_search_response)
   res_total <- res_list$total
-  res_df <- res_list$rows
+  res_df <- dplyr::as_data_frame(res_list$rows)
   res_rows <- nrow(res_df)
   attr(res_df, "hs_total_available") <- res_total
 
