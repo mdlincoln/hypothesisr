@@ -1,4 +1,4 @@
 library(testthat)
-library(hypothesisR)
+library(hypothesisr)
 
-test_check("hypothesisR")
+test_check("hypothesisr")
