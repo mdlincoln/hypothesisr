@@ -1,3 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.Rprofile$
+^appveyor\.yml$
+^\.travis\.yml$
+^\.Rprofile\.enc$
