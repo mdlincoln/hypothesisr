@@ -77,7 +77,7 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
   # If all the results are returned within the first page of values, the
   # function is finished.
   if(total_results <= pagesize)
-    return(hs_search_response(first_page))
+    return(hs_search_results(first_page))
 
   # If not, we start paging.
   search_pages <- seq(0, total_results, by = pagesize)
