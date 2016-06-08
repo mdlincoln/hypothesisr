@@ -54,5 +54,12 @@ You may also retreive the data describing individual annotations by id:
 ``` r
 hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
 ```
+
+## To-do
+
+1. Create annotations
+2. Update annotations
+3. Delete annotations
+
 ---
 [Matthew Lincoln](http://matthewlincoln.net)
