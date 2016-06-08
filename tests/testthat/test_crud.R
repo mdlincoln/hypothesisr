@@ -4,8 +4,7 @@ test_that("Annotations can be successfully created, read, updated, and destroyed
   # Because all these actions require an API token, skip on CRAN
   skip_on_cran()
 
-  source("../../.Rprofile")
-  test_token <- hs_token
+  test_token <- readRDS("token.rds")
   test_uri <- "https://github.com/mdlincoln/hypothesisr"
   test_user <- "acct:mdlincoln@hypothes.is"
   test_tags <- c("testing", "R")
