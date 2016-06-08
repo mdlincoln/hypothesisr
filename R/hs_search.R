@@ -35,20 +35,28 @@
 #'   text, for example: \code{foobar}.
 #' @param any Character. Search for annotations whose \code{quote}, \code{tags},
 #'   \code{text}, \code{uri.parts} or \code{user} fields match some query text.
+#' @param custom A named list of any field in the results returned by
+#'   hypothes.is as a name, and the search text as values.
 #'
 #' @return Returns a list of results
+#' @examples
+#' # Search for no more than 5 annotations containing the text "ulysses"
+#' hs_search(text = "ulysses", limit = 5)
+#' # Search with a custom field for tags
+#' hs_search(custom = list(tags = "to-do"))
 #' @export
 hs_search <- function(limit = NULL, offset = NULL, sort = "updated", order = "asc",
-                      uri = NULL, user = NULL, text = NULL, any = NULL) {
+                      uri = NULL, user = NULL, text = NULL, any = NULL, custom = list()) {
   query_response <- hs_search_handler(limit[1], offset[1], sort[1], order[1],
-                                      uri[1], user[1], text[1], any[1])
+                                      uri[1], user[1], text[1], any[1], custom)
   httr::content(query_response)
 }
 
 # Internal search functions ----
 
 # Internal handler that constructs and fires the appropriate URL.
-hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any) {
+hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any,
+                              custom) {
 
   # Check arguments for validity before making query
   is_valid_limit(limit)
@@ -66,6 +74,7 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any) 
   hs_base_url_list$query$user <- user
   hs_base_url_list$query$text <- text
   hs_base_url_list$query$any <- any
+  hs_base_url_list$query <- custom
   formatted_url <- httr::build_url(hs_base_url_list)
 
   # GET the URL
