@@ -4,3 +4,4 @@
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^\.Rprofile\.enc$
+^\.Rprofile_av\.enc$
