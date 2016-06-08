@@ -1,4 +1,9 @@
-context("Read hypothes.is")
+context("Create hypothes.is annotations")
+
+test_that()
+
+
+context("Read hypothes.is annotations")
 
 test_that("Annotations can be retrieved", {
   hs_annotation <- hs_read("Zzx_RC2cEeaSN18iqoj6Aw")
@@ -9,3 +14,7 @@ test_that("Annotations can be retrieved", {
 test_that("Illegal ids cause errors", {
   expect_error(hs_read("b"))
 })
+
+context("Update hypothes.is annotations")
+
+context("Delete hypothes.is annotations")
