@@ -42,7 +42,7 @@ hs_create_handler <- function(token, uri, user, permissions, document, target, t
   create_json <- jsonlite::toJSON(create_list)
 
   # Format the url to post to
-  hs_base_url_list$path <- paste0("api/annotations")
+  hs_base_url_list$path <- "api/annotations"
   formatted_url <- httr::build_url(hs_base_url_list)
 
   # Post the JSON data with the authorization token
