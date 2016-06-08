@@ -1,8 +1,5 @@
 context("Create hypothes.is annotations")
 
-test_that()
-
-
 context("Read hypothes.is annotations")
 
 test_that("Annotations can be retrieved", {
