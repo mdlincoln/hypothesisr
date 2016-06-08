@@ -22,6 +22,9 @@ test_that("Annotations can be successfully created, read, updated, and destroyed
   expect_equivalent(nrow(hs_annotation), 1)
   expect_equivalent(hs_annotation$text, "Temporary annotation made for package testing.")
 
+  expect_true(hs_update(test_token, create_id, text = "Updated annotation."))
+  expect_equivalent(hs_read(create_id)$text, "Updated annotation.")
+
   expect_true(hs_delete(test_token, create_id))
   expect_error(hs_read(create_id), regexp = "404")
 })
