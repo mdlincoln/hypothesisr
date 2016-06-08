@@ -33,8 +33,18 @@ hs_read_handler <- function(id) {
 # Hacky as all get-out: Wraps the returned json object in brackets so that
 # jsonlite::fromJSON will produce a dataframe instead of a list
 hs_read_results <- function(hs_read_response) {
-  jsonlite::fromJSON(
-    paste0("[", httr::content(hs_read_response, as = "text"), "]"))
+
+  status_code <- as.character(httr::status_code(hs_read_response))
+
+  read_action <- function(response, code) {
+    switch (code,
+            "200" = jsonlite::fromJSON(paste0("[", httr::content(response, as = "text"), "]")),
+            "404" = stop("404: annotation with the given id was not found"),
+            stop("Hypothes.is sent an undocumented response code. Sorry!")
+    )
+  }
+
+  read_action(hs_read_response, status_code)
 }
 
 # Input validation ----
