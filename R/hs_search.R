@@ -76,13 +76,13 @@ hs_search_handler <- function(limit, offset, sort, order, uri, user, text, any) 
 
 # Is the limit valid?
 is_valid_limit <- function(limit) {
-  if(!is.integer(limit) | !is.null(limit))
+  if(!(is.integer(limit) | is.null(limit)))
     stop("'limit' must be an integer")
 }
 
 # Is the offset valid?
 is_valid_offset <- function(offset) {
-  if(!is.integer(offset) | !is.null(offset))
+  if(!(is.integer(offset) | is.null(offset)))
     stop("'offset' must be an integer")
 }
 
