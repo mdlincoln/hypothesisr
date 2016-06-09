@@ -106,6 +106,10 @@ hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 #> [1] TRUE
 ```
 
+### Other utilities
+
+`open_context(id)` will open a hypothes.is annotation in context in the browser
+
 ## To-do
 
 1. Target annotations to specific parts of a webpage
