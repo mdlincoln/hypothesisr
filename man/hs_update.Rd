@@ -8,7 +8,8 @@
 }
 \usage{
 hs_update(token, id, uri = NULL, user = NULL, permissions = NULL,
-  document = NULL, target = NULL, tags = NULL, text = NULL)
+  document = NULL, target = NULL, tags = NULL, text = NULL,
+  custom = NULL)
 }
 \arguments{
 \item{token}{Character. Your account token, which you can generate at \url{https://hypothes.is/register}.}
@@ -28,6 +29,8 @@ hs_update(token, id, uri = NULL, user = NULL, permissions = NULL,
 \item{tags}{Character. (optional) Tags to apply to the annotation.}
 
 \item{text}{Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.}
+
+\item{custom}{Add arbitrary fields to the JSON object submitted to hypothes.is by means of a named list.}
 }
 \value{
 TRUE on successful update.

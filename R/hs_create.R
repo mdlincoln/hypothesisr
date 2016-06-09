@@ -10,6 +10,7 @@
 #' @param target A list describing the highlight position of the annotation. CURRENTLY IGNORED
 #' @param tags Character. (optional) Tags to apply to the annotation.
 #' @param text Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.
+#' @param custom Add arbitrary fields to the JSON object submitted to hypothes.is by means of a named list.
 #'
 #' @return Upon successful creation, returns a 22-character annotation ID. This ID may be retrieved using \link{hs_read}.
 #'
@@ -26,22 +27,24 @@ hs_create <- function(token, uri, user,
                       permissions = list(read = "group:__world__",
                                          update = user, delete = user,
                                          admin = user),
-                      document = NULL, target = NULL, tags = NULL, text) {
+                      document = NULL, target = NULL, tags = NULL, text,
+                      custom = NULL) {
 
   hs_create_response <- hs_create_handler(token, uri, user, permissions,
-                                          document, target, tags, paste(text, collapse = "\n"))
+                                          document, target, tags,
+                                          paste(text, collapse = "\n"), custom)
 
   hs_create_results(hs_create_response)
 }
 
 # Internal functions ----
 
-hs_create_handler <- function(token, uri, user, permissions, document, target, tags, text) {
+hs_create_handler <- function(token, uri, user, permissions, document, target, tags, text, custom) {
 
   # Check token validity
   is_valid_token(token)
 
-  create_json <- hs_construct_annotation(uri, user, permissions, tags, text)
+  create_json <- hs_construct_annotation(uri, user, permissions, tags, text, custom)
 
   # Format the url to post to
   hs_base_url_list$path <- "api/annotations"
@@ -55,9 +58,14 @@ hs_create_handler <- function(token, uri, user, permissions, document, target, t
 
 # Constructs annotation JSON (may be used by a future hs_update_handler, hence
 # the separate method)
-hs_construct_annotation <- function(uri, user, permissions, tags, text) {
+hs_construct_annotation <- function(uri, user, permissions, tags, text, custom) {
   # Construct a list holding the annotation data, and parse into JSON
-  ann_list <- list(uri = jsonlite::unbox(uri))
+  if(is.null(custom)) {
+    ann_list <- list()
+  } else {
+    ann_list <- custom
+  }
+  ann_list$uri <- jsonlite::unbox(uri)
   ann_list$user <- jsonlite::unbox(user)
   ann_list$permissions <- permissions
   ann_list$tags <- tags

@@ -14,19 +14,21 @@
 #' hs_update(user_token, "lDf9rC3EEea6ck-G5kLdXA", text = "Now even more annotate-y!")
 #' }
 hs_update <- function(token, id, uri = NULL, user = NULL, permissions = NULL,
-                      document = NULL, target = NULL, tags = NULL, text = NULL) {
+                      document = NULL, target = NULL, tags = NULL, text = NULL,
+                      custom = NULL) {
   hs_update_response <- hs_update_handler(token, id, uri, user, permissions,
-                                          tags, text)
+                                          tags, text, custom)
   hs_update_results(hs_update_response)
 }
 
 # Internal methods ----
 
-hs_update_handler <- function(token, id, uri, user, permissions, tags, text) {
+hs_update_handler <- function(token, id, uri, user, permissions, tags, text,
+                              custom) {
   is_valid_token(token)
   is_valid_id(id)
 
-  update_json <- hs_construct_update(uri, user, permissions, tags, text)
+  update_json <- hs_construct_update(uri, user, permissions, tags, text, custom)
 
   # Format the url to post to
   hs_base_url_list$path <- paste0("api/annotations/", id)
@@ -38,8 +40,12 @@ hs_update_handler <- function(token, id, uri, user, permissions, tags, text) {
              httr::add_headers(Authorization = paste0("Bearer ", token)))
 }
 
-hs_construct_update <- function(uri, user, permissions, tags, text) {
-  update_list <- list()
+hs_construct_update <- function(uri, user, permissions, tags, text, custom) {
+  if(!is.null(custom)) {
+    update_list <- custom
+  } else {
+    update_list <- list()
+  }
   if(!is.null(uri))
     update_list$uri <- jsonlite::unbox(uri)
   if(!is.null(user))
