@@ -6,3 +6,4 @@
 ^tests/testthat/token_av\.enc$
 ^tests/testthat/token_travis\.enc$
 ^secure-file/*$
+^cran-comments\.md$
