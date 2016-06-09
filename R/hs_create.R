@@ -29,7 +29,7 @@ hs_create <- function(token, uri, user,
                       document = NULL, target = NULL, tags = NULL, text) {
 
   hs_create_response <- hs_create_handler(token, uri, user, permissions,
-                                          document, target, tags, text)
+                                          document, target, tags, paste(text, collapse = "\n"))
 
   hs_create_results(hs_create_response)
 }
