@@ -15,3 +15,5 @@ License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Suggests: testthat
+URL: https://github.com/mdlincoln/hypothesisr
+BugReports: https://github.com/mdlincoln/hypothesisr/issues
