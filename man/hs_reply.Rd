@@ -16,8 +16,6 @@ hs_reply(token, user, id, text, ...)
 \item{text}{Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.}
 
 \item{...}{Other arguments to pass to \link{hs_create}.}
-
-\item{tags}{Character. (optional) Tags to apply to the annotation.}
 }
 \description{
 This is a utility wrapper around \link{hs_create} that takes an original comment ID and creates a reply to it by adding the custom \code{references} field when constructing the annotation. Normal fields like

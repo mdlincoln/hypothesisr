@@ -41,7 +41,6 @@ open_uri <- function(id) {
 #' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/register}
 #' @param user Character. Your user account, normally in the format \code{acct:username@hypothes.is}
 #' @param id Character. The annotation ID to reply to.
-#' @param tags Character. (optional) Tags to apply to the annotation.
 #' @param text Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.
 #' @param ... Other arguments to pass to \link{hs_create}.
 #'
