@@ -51,5 +51,5 @@ hs_read_results <- function(hs_read_response) {
 # Input validation ----
 
 is_valid_id <- function(id) {
-  stopifnot(nchar(id) == 22)
+  stopifnot(nchar(id) %in% c(20, 22))
 }
