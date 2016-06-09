@@ -113,6 +113,8 @@ hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 
 ### Other utilities
 
+Easily reply to an annotation with `hs_reply()`, which sends useful defaults to `hs_create()` in order to construct a new annotation that will show up as a reply to an existing annotation.
+
 `open_context(id)` will open a hypothes.is annotation in context in the browser.
 
 ## To-do

@@ -33,3 +33,21 @@ open_uri <- function(id) {
   a <- hs_read(id)
   utils::browseURL(a$uri)
 }
+
+#' Create a reply to a comment
+#'
+#' This is a utility wrapper around \link{hs_create} that takes an original comment ID and creates a reply to it by adding the custom \code{references} field when constructing the annotation. Normal fields like
+#'
+#' @param token Character. Your account token, which you can generate at \url{https://hypothes.is/register}
+#' @param user Character. Your user account, normally in the format \code{acct:username@hypothes.is}
+#' @param id Character. The annotation ID to reply to.
+#' @param tags Character. (optional) Tags to apply to the annotation.
+#' @param text Character. Text to put in the body of the annotation. This will be coerced into a character vector of length 1 using \link{paste}.
+#' @param ... Other arguments to pass to \link{hs_create}.
+#'
+#' @export
+hs_reply <- function(token, user, id, text, ...) {
+  original_ann <- hs_read(id)
+  hs_create(token, uri = original_ann$uri, user = user, text = text,
+            custom = list(references = id))
+}
