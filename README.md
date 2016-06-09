@@ -113,7 +113,7 @@ hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 
 ### Other utilities
 
-`open_context(id)` will open a hypothes.is annotation in context in the browser
+`open_context(id)` will open a hypothes.is annotation in context in the browser.
 
 ## To-do
 
