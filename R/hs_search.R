@@ -94,6 +94,7 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
   # If a progress bar is warranted, create it and return a paging function that
   # increments it; if not, just a plain paging function
   if(progress) {
+    message("Downloading ", total_results, " annotations in ", length(search_pages), " pages.")
     pb <- utils::txtProgressBar(min = 0, max = total_results, initial = pagesize, style = 3)
     pager <- function(x) {
       utils::setTxtProgressBar(pb, x)
@@ -116,7 +117,7 @@ hs_search_all <- function(sort = "updated", order = "asc", uri = NULL,
     close(pb)
   }
 
-  hs_search_all_results(all_results)
+  hs_search_all_results(all_results, progress)
 }
 
 # Internal search functions ----
@@ -162,9 +163,20 @@ hs_search_results <- function(hs_search_response) {
   return(res_df)
 }
 
-hs_search_all_results <- function(hs_response) {
+hs_search_all_results <- function(hs_response, progress) {
 
-  listed_results <- lapply(hs_response, list_results)
+  if(progress) {
+    message("Parsing JSON response...")
+    pb <- txtProgressBar(min = 0, max = length(hs_response))
+    listed_results <- lapply(hs_response, function(x) {
+      setTxtProgressBar(pb, value = getTxtProgressBar(pb) + 1)
+      list_results(x)
+    })
+    close(pb)
+  } else {
+    listed_results <- lapply(hs_response, list_results)
+  }
+
   unlisted_results <- lapply(listed_results, function(x) {
     x$rows
   })
