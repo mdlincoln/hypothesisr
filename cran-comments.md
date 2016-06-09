@@ -6,9 +6,25 @@
 
 ## R CMD CHECK results
 
-- New submission
+0 ERRORS | 0 WARNINGS | 1 NOTE
 
-- License components with restrictions and base license permitting such: MIT + file LICENSE
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: 'Matthew Lincoln <matthew.d.lincoln@gmail.com>'
+
+New submission
+
+License components with restrictions and base license permitting such:
+  MIT + file LICENSE
+File 'LICENSE':
+  YEAR: 2016
+  COPYRIGHT HOLDER: Matthew Lincoln
+
+Possibly mis-spelled words in DESCRIPTION:
+  API (3:36, 7:32)
+  Hypothes (3:24, 7:67)
+
+- API is an acronym for Application Programming Interface.
+- Hypothes.is is the name of the web service whose API this library wraps.
 
 ## Downstream dependencies
 
