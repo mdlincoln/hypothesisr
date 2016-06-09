@@ -118,7 +118,6 @@ hs_delete(user_token, "lDf9rC3EEea6ck-G5kLdXA")
 ## To-do
 
 1. Target annotations to specific parts of a webpage
-1. Generalize hypothesisr to work on localized installations of hypothes.is
 
 ---
 [Matthew Lincoln](http://matthewlincoln.net)
