@@ -65,5 +65,9 @@ If any vectors are passed to these arguments, only the first values
 hs_search(text = "ulysses", limit = 5)
 # Search with a custom field for tags
 hs_search(custom = list(tags = "todo"))
+# use the 'uri.parts' field to find annotations on a given domain (exclude
+# the TLD, as this will result in all annotations on sites with, e.g., .org,
+# as well.)
+hs_search(custom = list(uri.parts = "programminghistorian"))
 }
 

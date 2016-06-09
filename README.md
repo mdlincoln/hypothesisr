@@ -49,6 +49,25 @@ ulysses_annotations$text
 #> [6] "What better novel to annotate than Ulysses, a novel full of jokes, references, and puzzles? "
 ```
 
+You can specify any of the available annotation data fields with a named list using the `custom` parameter.
+For example, to find all the annotations on a domain, query the `uri.parts` field (but don't include `.com`, `.org`, `.edu` and the like; this currently results in the API returning annotations sharing any of those TLDs.)
+
+``` r
+ph <- hs_search_all(custom = list(uri.parts = "programminghistorian"))
+
+library(dplyr)
+# Display the top 5 most-annotated pages under this domain
+slice(count(ph, uri, sort = TRUE), 1:5)
+```
+
+| uri                                                                                                              |    n|
+|:-----------------------------------------------------------------------------------------------------------------|----:|
+| <http://programminghistorian.org/lessons/getting-started-with-markdown>                                          |    6|
+| <http://programminghistorian.org/lessons/graph-databases-and-SPARQL>                                             |    6|
+| <http://programminghistorian.org/lessons/intro-to-the-zotero-api>                                                |    6|
+| <http://programminghistorian.github.io/ph-submissions/lessons/building-static-sites-with-jekyll-github-pages>    |    5|
+| <http://programminghistorian.org/lessons/creating-new-items-in-zotero>                                           |    5|
+
 `hs_search()` will retrieve one page of annotations (up to 200 annotations per page), while `hs_search_all()` will page through all available annotations until they are all downloaded.
 
 Note: running `hs_search_all()` with no parameters will download _all_ publicly accessible hypothes.is annotations.
@@ -62,40 +81,26 @@ _At the moment, hpothesisr cannot create annotations targeted to a particular se
 ``` r
 user_token <- "xxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 hs_create(token = user_token, uri = "https://github.com/mdlincoln/hypothesisr", user = "acct:mdlincoln@hypothes.is", tags = c("testing", "R"), text = "R made me!")
-#> [1] "lDf9rC3EEea6ck-G5kLdXA"
+#> [1] "WFMnSC3FEeaNvLeGkQeJbg"
 ```
 
 You may also retrieve the data describing individual annotations by id:
 
 ``` r
-hs_read("lDf9rC3EEea6ck-G5kLdXA")
-#>                            updated     group
-#> 1 2016-06-08T22:01:40.496319+00:00 __world__
-#>                                     target
-#> 1 https://github.com/mdlincoln/hypothesisr
-#>                                                   links.json
-#> 1 https://hypothes.is/api/annotations/lDf9rC3EEea6ck-G5kLdXA
-#>                                     links.html
-#> 1 https://hypothes.is/a/lDf9rC3EEea6ck-G5kLdXA
-#>                                                          links.incontext
-#> 1 https://hyp.is/lDf9rC3EEea6ck-G5kLdXA/github.com/mdlincoln/hypothesisr
-#>         tags       text                          created
-#> 1 testing, R R made me! 2016-06-08T22:01:40.496312+00:00
-#>                                        uri                       user
-#> 1 https://github.com/mdlincoln/hypothesisr acct:mdlincoln@hypothes.is
-#>                                       link                     id
-#> 1 https://github.com/mdlincoln/hypothesisr lDf9rC3EEea6ck-G5kLdXA
-#>   permissions.read          permissions.admin         permissions.update
-#> 1  group:__world__ acct:mdlincoln@hypothes.is acct:mdlincoln@hypothes.is
-#>           permissions.delete
-#> 1 acct:mdlincoln@hypothes.is
+a <- hs_read("WFMnSC3FEeaNvLeGkQeJbg")
+a$uri
+#> [1] "https://github.com/mdlincoln/hypothesisr"
+a$text
+#> [1] "R made me!"
+a$user
+#> [1] "acct:mdlincoln@hypothes.is"
 ```
 
 You can update individual fields of annotations by passing your token, the annotation ID, and one or more fields with replacement values.
 
 ``` r
-hs_update(user_token, "lDf9rC3EEea6ck-G5kLdXA", text = "Now even more annotate-y!")
-hs_read("lDf9rC3EEea6ck-G5kLdXA")$text
+hs_update(user_token, "WFMnSC3FEeaNvLeGkQeJbg", text = "Now even more annotate-y!")
+hs_read("WFMnSC3FEeaNvLeGkQeJbg")$text
 #> [1] "Now even more annotate-y!"
 ```
 
