@@ -1,3 +1,9 @@
+## Resubmission
+
+This is a revised submission. In this version I have:
+
+- Added a URL to hypothes.is in the DESCRIPTION.
+
 ## Test environments
 
 - local OS X install, R 3.3.0
@@ -7,9 +13,6 @@
 ## R CMD CHECK results
 
 0 ERRORS | 0 WARNINGS | 1 NOTE
-
-* checking CRAN incoming feasibility ... NOTE
-Maintainer: 'Matthew Lincoln <matthew.d.lincoln@gmail.com>'
 
 New submission
 
