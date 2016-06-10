@@ -2,7 +2,7 @@
 
 This is a revised submission. In this version I have:
 
-- Added a URL to hypothes.is in the DESCRIPTION.
+- Wrapped 'Hypothes.is' in single quotes in the DESCRIPTION
 
 ## Test environments
 
@@ -23,11 +23,9 @@ File 'LICENSE':
   COPYRIGHT HOLDER: Matthew Lincoln
 
 Possibly mis-spelled words in DESCRIPTION:
-  API (3:36, 7:32)
-  Hypothes (3:24, 7:67)
+  API (3:38, 7:32)
 
 - API is an acronym for Application Programming Interface.
-- Hypothes.is is the name of the web service whose API this library wraps.
 
 ## Downstream dependencies
 
