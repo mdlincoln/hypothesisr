@@ -10,5 +10,4 @@ NULL
 # Sets up the base url schema for all API queries to hypothes.is. Every API
 # handler will append relevant queries and parameters to this list before
 # formatting into a URL and GET/POST/PUT/DELETE-ing.
-hs_base_url_list <- list(scheme = "https", hostname = "hypothes.is")
-attr(hs_base_url_list, "class") <- "url"
+hs_base_url_list <- httr::parse_url("https://hypothes.is")
