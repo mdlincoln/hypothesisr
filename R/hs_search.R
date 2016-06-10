@@ -171,7 +171,8 @@ hs_search_all_results <- function(hs_response, progress) {
 
   if(progress) {
     message("Parsing JSON response...")
-    pb <- utils::txtProgressBar(min = 0, max = length(hs_response))
+    pb <- utils::txtProgressBar(min = 0, max = length(hs_response), initial = 1,
+                                style = 3)
     listed_results <- lapply(hs_response, function(x) {
       utils::setTxtProgressBar(pb, value = utils::getTxtProgressBar(pb) + 1)
       list_results(x)
