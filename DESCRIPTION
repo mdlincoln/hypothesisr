@@ -1,13 +1,13 @@
 Package: hypothesisr
 Type: Package
-Title: Wrapper for the 'Hypothes.is' API
 Version: 0.1.0.9000
+Title: Wrapper for the 'Hypothes.is' Web Annotation Service
 Authors@R: person("Matthew", "Lincoln", email = "matthew.d.lincoln@gmail.com",
     role = c("aut", "cre"))
-Description: Interact with the API for the web annotation service 'Hypothes.is'
-    (See <http://hypothes.is> for more information.) Allows users to download
-    data about public annotations, and create, retrieve, update, and delete
-    their own annotations.
+Description: Interact with the application programming interface for the web
+    annotation service 'Hypothes.is' (See <http://hypothes.is> for more
+    information.) Allows users to download data about public annotations, and
+    create, retrieve, update, and delete their own annotations.
 Imports:
     dplyr,
     httr,
