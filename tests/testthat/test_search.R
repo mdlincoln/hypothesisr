@@ -18,7 +18,13 @@ test_that("hs_search returns a list of the expected format.", {
 
   expect_s3_class(hs_ulysses, "data.frame")
   expect_equivalent(nrow(hs_ulysses), 5)
-  expect_equivalent(names(hs_ulysses), c("updated", "group", "target", "tags", "text", "created", "uri", "user", "id", "references", "links.json", "links.html", "links.incontext", "document.link", "document.title", "document.favicon", "document.twitter.url", "document.twitter.site", "document.twitter.card", "document.twitter.title", "document.facebook.url", "document.facebook.site_name", "document.facebook.type", "document.facebook.title", "permissions.read", "permissions.admin", "permissions.update", "permissions.delete"))
+  # The columns returned may differ depending on the exact search results,
+  # however there are always a set of core fields that will be present
+  expect_true(all(c("updated", "group", "target", "tags", "text", "created",
+                    "uri", "user", "id", "references", "links.json",
+                    "links.html", "links.incontext", "permissions.read",
+                    "permissions.admin", "permissions.update",
+                    "permissions.delete") %in% names(hs_ulysses)))
 })
 
 test_that("custom fields in hs_search are correctly added to URL.", {
