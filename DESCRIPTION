@@ -1,7 +1,7 @@
 Package: hypothesisr
 Type: Package
 Title: Wrapper for the 'Hypothes.is' Web Annotation Service
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: person("Matthew", "Lincoln", email = "matthew.d.lincoln@gmail.com",
     role = c("aut", "cre"))
 Description: Interact with the application programming interface for the web
