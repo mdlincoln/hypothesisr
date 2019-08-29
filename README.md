@@ -1,3 +1,5 @@
+**This package is now quite out of date. I recommend using [rapiclient](https://github.com/bergant/rapiclient) to directly access the hypothesis OpenAPI/Swagger schema file.***
+
 hypothesisr
 ===========
 
